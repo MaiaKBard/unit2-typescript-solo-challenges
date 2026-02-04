@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    // Module & Resolution
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    
+    // Type Checking
+    "strict": true,
+    
+    // Interop & Compatibility
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    
+    // No emit, only type checking
+    "noEmit": true,
+    
+    // Language & Environment
+    "target": "ESNext"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
