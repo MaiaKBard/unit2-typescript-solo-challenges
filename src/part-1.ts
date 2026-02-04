@@ -12,7 +12,31 @@
  * Don't forget to type what 'palindrome' returns!
  */
 
-const palindrome = (str) => {};
+const palindrome = (str:string):boolean => {
+  //Input: string
+  // Output: Boolean
+
+  //True - If string is identical forward and backwards
+  // False - if not
+
+  //Disregard capitlization and characters other than letters
+
+  //We need to strip the string of anything but letter & Lowercase the entire string
+    //Declare a varible 
+    // Any punctuation and whitespace - .replace
+    // lowercase .toLowerCase
+  const newStr = str.replace(/[^a-zA-Z]/g, "").toLowerCase()
+  // console.log(stripedStr)
+
+  //Need to reverse the string
+    //Declare a varible 
+  const revesedStr = newStr.split('').reverse().join('')
+  // console.log(revesedStr)
+  //Compare to revesed string and original stripped string
+  // If the same output true else false
+  if(newStr === revesedStr) return true
+  return false
+};
 
 // console.log(palindrome("Anne, I vote more cars race Rome-to-Vienna")); // true
 // console.log(palindrome("llama mall")); // true
