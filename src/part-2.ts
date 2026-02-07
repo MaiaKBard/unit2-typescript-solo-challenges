@@ -5,7 +5,7 @@
  * (red lines) go away.
  */
 
-const getArtistBirth = (artistName, year): string => {
+const getArtistBirth = (artistName:string, year:number): string => {
   return `${artistName} was born in the year ${year}.`;
 };
 
@@ -15,7 +15,9 @@ const frankZappa = 'Frank Zappa';
 const frankZappaAge = 52;
 
 type Musician = {
-  artistName: string;
+  artistName: string,
+  age:number, 
+  deceased:boolean
   // what other properties does this type need?
 };
 
@@ -25,12 +27,12 @@ const frankZappaObj: Musician = {
   deceased: true,
 };
 
-const getMusicianInfo = (musicianObj): string => {
+const getMusicianInfo = (musicianObj:Musician): string => {
   const { artistName, age, deceased } = musicianObj;
   // ^ this is called object destructuring assignment
   // (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
-  return `${artistName}, age ${age}${deceased ? ' (deceased)' : ''}`;
+  return `${artistName}, age ${age}${deceased ? ' (deceased)' : ''}`; //Turinary operator
 };
 
 console.log(getMusicianInfo(frankZappaObj));
@@ -51,7 +53,9 @@ console.log(getMusicianInfo(frankZappaObj));
  * in whatever code exists on the next line.
  */
 
-type GroceryList = unknown; // update this!
+type GroceryList = {
+  [key:string]:number
+}; // update this!
 
 const groceryList: GroceryList = {
   carrots: 5,
@@ -72,7 +76,9 @@ const groceryList: GroceryList = {
   thisShouldAlsoError: true,
 };
 
-type InappropriateActionBySituation = unknown; // update this!
+type InappropriateActionBySituation = {
+  [key:string]:string[] // Or Array<string>
+} // update this!
 
 const inappropriateActionBySituation: InappropriateActionBySituation = {
   funeral: [
@@ -100,7 +106,27 @@ const inappropriateActionBySituation: InappropriateActionBySituation = {
     'checking your phone incessantly for a new Primeagen video to drop',
 };
 
-type CharactersById = {}; // update this!
+
+// type CharactersById = {
+//   [key:number]: { // This should be number even tho object will convert it to a string
+//     id:number, 
+//     name:string,
+//     status:string,
+//     species:string
+//   }
+// }; // This way is better! than just saying object
+type Charcter = {
+  id:number, 
+    name:string,
+    status:string,
+    species:string
+}
+
+type CharactersById = Record<number, Charcter> //This is the best way!!!
+//OR 
+//type CharactersById = {
+//   [key:string]: object
+// };
 
 const charactersById: CharactersById = {
   1: {
@@ -162,10 +188,33 @@ const charactersById: CharactersById = {
  */
 
 // update these!
-type GroceryItem<> = {};
-type CapreseSalad = unknown;
-type GroceryStore<> = {};
+type GroceryItem = {
+  name:string, 
+  price:number,
+  inStock:boolean
+};
+type CapreseSalad = {
+  name:'Caprese Salad', 
+  price:14.99,
+  inStock:true
+};
+//You need TWO generic parameters (name and city) ahhhhhh i think i follow... 
+// We're making a template kinda
 
+// The gerneric will be Name and City so the name and city can be anything mmm this is hard to explain
+//so we could put anythign in as generic ? cool... ok ok .. wow
+  //Yea basically 
+  
+//The <Name, City> is like function parameters but for tyoes
+  //Name is a placeholder for wtv you pass in and same for City
+
+//{name:Name, city:City} - this is what you get as a result
+  //whatever you pass as Name becomes the type of the name property
+  //whatever you pass as City becomes the type of the city property
+  type GroceryStore<Name, City> = {
+    name:Name,
+    city:City
+  };
 /*
  *
  * TESTING AREA FOR #3
